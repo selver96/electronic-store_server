@@ -1,1 +1,1 @@
-# electronic-store_server
+# Electronic Store
