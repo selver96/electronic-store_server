@@ -3,6 +3,7 @@ import express, { Application } from "express";
 import sequelize from './database/config';
 import cors from 'cors'; 
 import router from './routers/routers';
+const middleware = require('./middleware/ErrorHandlingMiddleware');
 // const models = require('./models/models');
 
 const app: Application = express();
@@ -12,6 +13,8 @@ const PORT: string = process.env.PORT || '6000';
 app.use(cors());
 app.use(express.json());
 app.use('/api',router);
+
+app.use(middleware);
 
 const start = async () =>{
     try{

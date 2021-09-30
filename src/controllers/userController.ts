@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import ApiError from "../error/apiError";
 
 class UserController {
     
@@ -10,7 +11,11 @@ class UserController {
 
     }
 
-    async check(req: Request, res: Response){
+    async check(req: Request, res: Response, next: any){
+        const {id} = req.query
+        if(!id){
+            return next(ApiError.badRequest('Id tanimlanmadi'));
+        }
         res.json({mag: 'I checked'})
     }
 }
